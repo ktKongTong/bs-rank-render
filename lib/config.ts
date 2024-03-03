@@ -1,6 +1,6 @@
 
 const constants = {
-  BASE_URL : process.env.VERCEL_URL ?? "https://bs-rank-render.vercel.app"
+  BASE_URL : process.env.BASE_URL
 }
 
 export default {
