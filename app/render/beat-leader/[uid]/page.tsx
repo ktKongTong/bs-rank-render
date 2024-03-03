@@ -9,7 +9,7 @@ import {BeatLeaderItem} from "@/types/beatleader";
 import {countryEmoji} from "@/lib/utils";
 
 
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = process.env.VERCEL_URL
 async function getScoreItem(uid:string) {
   const url = `${BASE_URL}/api/player/${uid}`
   const res = await fetch(url).then(res=> res.json())
