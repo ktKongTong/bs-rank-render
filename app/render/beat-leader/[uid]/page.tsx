@@ -7,9 +7,10 @@ import ScoreItem from "@/components/scoreItem";
 import {ScoreSaberUser} from "@/types/scoresaber";
 import {BeatLeaderItem} from "@/types/beatleader";
 import {countryEmoji} from "@/lib/utils";
+import config from "@/lib/config";
 
-
-const BASE_URL = process.env.VERCEL_URL
+const BASE_URL = config.constants.BASE_URL
+console.log("BASE_URL",config.constants.BASE_URL)
 async function getScoreItem(uid:string) {
   const url = `${BASE_URL}/api/player/${uid}`
   const res = await fetch(url).then(res=> res.json())
