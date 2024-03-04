@@ -42,7 +42,7 @@ export default function BeatLeaderItem(
                 </div>
                 <div>
                 <span><Star className={"w-3 h-3"}/></span>
-                <span>{item.leaderboard.stars} </span>
+                <span>{item.leaderboard.difficulty.stars?.toFixed(2)??"none"} </span>
                 </div>
                 <div>
                 <span><Key className={"w-3 h-3"}/></span>

@@ -2,8 +2,6 @@
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 
 import {twJoin} from "tailwind-merge";
-import ScoreItem from "@/components/scoreItem";
-import {ScoreSaberItem, ScoreSaberUser} from "@/types/scoresaber";
 import {countryEmoji} from "@/lib/utils";
 import config from "@/lib/config";
 import SkillGraph from "@/components/skill-graph";
@@ -11,23 +9,25 @@ import { BeatLeaderUser } from "@/types/beatleader";
 import getPart from "@/lib/blpart";
 import { BeadLeaderScoresResponse, Datum } from "@/types/beatleaderreq";
 import BeatLeaderItem from "@/components/beatleaderItem";
+import ScoreBadge from "@/components/socre-badge";
+import { getHeadsetForHMD, headset } from "@/lib/blheadset";
 
 const BASE_URL = config.constants.BASE_URL
 
 async function getBeatLeaderItem(uid:string) {
-  const url = `${BASE_URL}/api/bealeader/${uid}/scores`
+  const url = `${BASE_URL}/api/beatleader/${uid}/scores`
   console.log(url)
   const res = await fetch(url).then(res=> res.json())
   return (res as BeadLeaderScoresResponse).data.map(item=>({...item,pinned:false}))
 }
 async function getPinnedBeatLeaderItem(uid:string) {
-  const url = `${BASE_URL}/api/bealeader/${uid}/pinnedScores`
+  const url = `${BASE_URL}/api/beatleader/${uid}/pinnedScores`
   console.log(url)
   const res = await fetch(url).then(res=> res.json())
   return (res as Datum[]).map(item=>({...item,pinned:true}))
 }
 async function getUserInfo(uid:string) {
-  const url = `${BASE_URL}/api/bealeader/${uid}`
+  const url = `${BASE_URL}/api/beatleader/${uid}`
   console.log(url)
   const res =  await fetch(url)
   if (!res.ok) {
@@ -53,6 +53,7 @@ export default async function BSPlayerRankPage({params}: { params: { uid: string
   const part = getPart(user)
   // const bg = user.profileSettings.profileCover ?? user.avatar
   const bg = "https://www.loliapi.com/acg/pc/"
+    // console.log(user)
   return(
   <>
     <div className={"flex flex-col bg-slate-100 justify-center items-center min-h-screen"}>
@@ -76,8 +77,13 @@ export default async function BSPlayerRankPage({params}: { params: { uid: string
                 <span >🌎 # {user.rank}</span>
                 <span >{countryEmoji(user.country)} # {user.countryRank}</span>
               </div>
+
+              <div className="flex gap-2 align-items-center "> 
+                <ScoreBadge className="w-auto text-white" name={"P"} count={user.scoreStats.topPlatform}/>
+                <ScoreBadge className="w-auto text-white" name={"H"} count={getHeadsetForHMD(user.scoreStats.topHMD)}/>
+                <ScoreBadge className="w-auto text-white" name={"R"} count={user.scoreStats.rankedPlayCount}/>
+              </div>
               <div
-                // className={"text-3xl font-bold}
                 className={twJoin(
                   "text-4xl font-bold ",
                   " bg-gradient-to-r bg-clip-text text-transparent from-blue-300 to-red-300",
@@ -88,7 +94,29 @@ export default async function BSPlayerRankPage({params}: { params: { uid: string
               </div>
             </div>
             </div>
-            <div className="ml-auto mr-0">
+            <div className="px-3 flex flex-col justify-end items-center grow">
+              {
+                user.badges.length > 0 && 
+                <div className="grid grid-cols-3 gap-2 justify-self-center align-items-cener justify-items-center mb-auto mt-2">
+                  {
+                    user.badges.map(badge=>(<>
+                      <img key={badge.id} src={badge.image} width={"70px"} height={"20px"} className="self-center w-[70px] h-5"></img>
+                    </>))
+                  }
+                </div>
+              }
+
+              <div className="grid grid-cols-3 gap-2 align-items-center py-2">
+                <ScoreBadge name={"SS+"} count={user.scoreStats.sspPlays}/>
+                <ScoreBadge name={"SS"} count={user.scoreStats.ssPlays}/>
+                <ScoreBadge name={"S+"} count={user.scoreStats.spPlays}/>
+                <ScoreBadge name={"S"} count={user.scoreStats.sPlays}/>
+                <ScoreBadge name={"A"} count={user.scoreStats.aPlays}/>
+              </div>
+            {/* more badages */}
+            </div>
+
+            <div className="ml-auto mr-10 mb-2">
             <SkillGraph factorA={part.accPpPart} factorB={part.techPpPart} factorC={part.passPpPart}/>
             </div>
           </div>

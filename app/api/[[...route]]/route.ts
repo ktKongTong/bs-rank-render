@@ -43,19 +43,21 @@ app.get('/api/beatsaver/:id', async (c)=> {
 })
 
 
-app.get('/api/bealeader/:uid', async (c)=> {
+app.get('/api/beatleader/:uid', async (c)=> {
   const {uid} = c.req.param()
   
   const res = await fetch(`https://api.beatleader.xyz/player/${uid}`)
   return res
 })
-app.get('/api/bealeader/:uid/scores', async (c)=> {
+app.get('/api/beatleader/:uid/scores', async (c)=> {
   const {uid} = c.req.param()
-  const res = await fetch(`https://api.beatleader.xyz/player/${uid}/scores?count=32`)
+  const url = `https://api.beatleader.xyz/player/${uid}/scores?count=32&sortBy=pp&order=asc`
+  console.log(url)
+  const res = await fetch(url)
   return res
 })
 
-app.get('/api/bealeader/:uid/pinnedScores', async (c)=> {
+app.get('/api/beatleader/:uid/pinnedScores', async (c)=> {
   const {uid} = c.req.param()
   const res = await fetch(`https://api.beatleader.xyz/player/${uid}/pinnedScores`)
   return res

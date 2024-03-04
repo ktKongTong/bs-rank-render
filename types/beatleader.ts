@@ -33,6 +33,12 @@ export interface BeatLeaderUser {
   scoreStats: ScoreStats;
   socials: Social[];
   techPp: number;
+  "topHMD": number,
+  "sspPlays": number,
+  "ssPlays": number,
+  "spPlays": number,
+  "sPlays": number,
+  "aPlays": number,
   [property: string]: any;
 }
 
