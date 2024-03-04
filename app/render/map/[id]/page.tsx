@@ -1,15 +1,8 @@
 // 'use client'
-import {useBLPlayer, useBLPlayerInfo} from "@/hooks/usePlayer";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import React from "react";
-import {twJoin} from "tailwind-merge";
-import ScoreItem from "@/components/scoreItem";
-import {ScoreSaberItem, ScoreSaberUser} from "@/types/scoresaber";
 import { BSMap} from "@/types/beatsaver";
-import {countryEmoji} from "@/lib/utils";
 import config from "@/lib/config";
 import { Clock, HeartPulse, Key } from "lucide-react";
-import * as ProgressPrimitive from "@radix-ui/react-progress"
 import Progress from "@/components/progress";
 
 const BASE_URL = config.constants.BASE_URL

@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import {BeatLeaderItem, BeatLeaderResponse} from "@/types/beatleader";
 import {useQuery} from "@tanstack/react-query";
 import {ScoreSaberUser} from "@/types/scoresaber";
 
@@ -12,21 +11,21 @@ export async function jsonFetcher(
 }
 
 // todo change to ssr
-export const useBLPlayer = (uid: string) => {
-  const { isPending,isLoading, error, data } = useQuery({
-    queryKey: ['repoData'],
-    queryFn: () =>
-      fetch(`/api/player/${uid}`).then((res) =>
-        res.json(),
-      ),
-  })
-  const leaderItems:BeatLeaderItem[] = data ? [].concat(...data) : [];
-  return {
-    leaderItems,
-    isLoading,
-    error,
-  }
-}
+// export const useBLPlayer = (uid: string) => {
+//   const { isPending,isLoading, error, data } = useQuery({
+//     queryKey: ['repoData'],
+//     queryFn: () =>
+//       fetch(`/api/player/${uid}`).then((res) =>
+//         res.json(),
+//       ),
+//   })
+//   const leaderItems:BeatLeaderItem[] = data ? [].concat(...data) : [];
+//   return {
+//     leaderItems,
+//     isLoading,
+//     error,
+//   }
+// }
 
 export const useBLPlayerInfo = (uid: string) => {
   const { isPending,isLoading, error, data } = useQuery({
