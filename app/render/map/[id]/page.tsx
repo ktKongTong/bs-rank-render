@@ -81,9 +81,8 @@ export default async function BSPlayerRankPage({params}: { params: { id: string 
 
             <div className="tags flex flex-wrap justify-start">
               {
-                bsMap.tags
-                .sort(((a,b)=>b.length - a.length))
-                .map(item=> (
+                bsMap.tags?.sort(((a,b)=>b.length - a.length))
+                ?.map(item=> (
                   <span className="text-xs mx-1 text-white bg-red-500 rounded px-1" key={item}>{getTag(item)}</span>
                 ))
               }
