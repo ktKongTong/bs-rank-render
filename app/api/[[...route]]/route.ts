@@ -62,6 +62,7 @@ app.get('/api/beatleader/:uid/scores', async (c)=> {
     query['order'] = ["desc"]
   }
   const q = Object.keys(query).map(item=> (query[item].map(it=>`${item}=${it}`).join("&"))).join("&")
+  console.log('q',query)
   const url = `https://api.beatleader.xyz/player/${uid}/scores?` + q
   console.log(url)
   const res = await fetch(url)

@@ -14,8 +14,8 @@ import { getHeadsetForHMD, headset } from "@/lib/blheadset";
 
 const BASE_URL = config.constants.BASE_URL
 
-async function getBeatLeaderItem(uid:string) {
-  const url = `${BASE_URL}/api/beatleader/${uid}/scores`
+async function getBeatLeaderItem(uid:string, q:string|undefined) {
+  const url = `${BASE_URL}/api/beatleader/${uid}/scores?${q}`
   console.log(url)
   const res = await fetch(url).then(res=> res.json())
   return (res as BeadLeaderScoresResponse).data.map(item=>({...item,pinned:false}))
@@ -37,14 +37,26 @@ async function getUserInfo(uid:string) {
 }
 
 
-export default async function BSPlayerRankPage({params}: { params: { uid: string } }) {
+export default async function BSPlayerRankPage({params,searchParams}: { params: { uid: string },searchParams: { [key: string]: string | string[] | undefined };}) {
   console.log(params.uid)
-  // const {scoreUser,isLoading:isUserLoading,error:userError} = useBLPlayerInfo(params.uid)
-  // const {leaderItems,isLoading,error} = useBLPlayer(params.uid)
+  console.log(searchParams)
+  let q
+  if(searchParams) {
+    q = Object.keys(searchParams).map(item=> {
+      let qi = searchParams[item]
+      if (!qi) {
+        qi = []
+      }else if (typeof qi === 'string'){
+        qi = [qi]
+      }
+      return qi.map(it=>`${item}=${it}`).join('&')
+    })
+    .join("&")
+  }
   
   const [pinnedItems,topLeaderItems, user] = await Promise.all([
      getPinnedBeatLeaderItem(params.uid),
-     getBeatLeaderItem(params.uid),
+     getBeatLeaderItem(params.uid,q),
       getUserInfo(params.uid)
     ])
   
