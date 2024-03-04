@@ -52,6 +52,7 @@ export interface BSMap{
         paritySummary: any,
       }[]
     }[],
+    lastPublishedAt: string,
     updatedAt: string,
     createdAt: string,
     tags: string[],

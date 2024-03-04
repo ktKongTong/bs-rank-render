@@ -38,6 +38,7 @@ export default async function BSPlayerRankPage({params}: { params: { uid: string
     <div className={"flex flex-col bg-slate-100 justify-center items-center min-h-screen"}>
       <div
          className={"h-[680px] w-[960px] rounded-md"}
+         id="render-result"
       style={{
         backgroundImage: `url('${bg}')`,
         backgroundSize: 'cover',
