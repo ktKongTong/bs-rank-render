@@ -51,7 +51,18 @@ app.get('/api/beatleader/:uid', async (c)=> {
 })
 app.get('/api/beatleader/:uid/scores', async (c)=> {
   const {uid} = c.req.param()
-  const url = `https://api.beatleader.xyz/player/${uid}/scores?count=32&sortBy=pp&order=asc`
+  const query = c.req.queries()
+  if(!query['count']) {
+    query['count'] = ["32"]
+  }
+  if(!query['sortBy']) {
+    query['sortBy'] = ["pp"]
+  }
+  if(!query['order']) {
+    query['order'] = ["desc"]
+  }
+  const q = Object.keys(query).map(item=> (query[item].map(it=>`${item}=${it}`).join("&"))).join("&")
+  const url = `https://api.beatleader.xyz/player/${uid}/scores?` + q
   console.log(url)
   const res = await fetch(url)
   return res

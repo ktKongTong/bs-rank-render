@@ -100,7 +100,7 @@ export default async function BSPlayerRankPage({params}: { params: { uid: string
                 <div className="grid grid-cols-3 gap-2 justify-self-center align-items-cener justify-items-center mb-auto mt-2">
                   {
                     user.badges.map(badge=>(<>
-                      <img key={badge.id} src={badge.image} width={"70px"} height={"20px"} className="self-center w-[70px] h-5"></img>
+                      <img alt={badge.description} key={badge.id} src={badge.image} width={"70px"} height={"20px"} className="self-center w-[70px] h-5"></img>
                     </>))
                   }
                 </div>
