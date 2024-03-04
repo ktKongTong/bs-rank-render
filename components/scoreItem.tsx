@@ -1,5 +1,5 @@
-import {BeatLeaderItem} from "@/types/beatleader";
 import {Avatar, AvatarImage} from "@/components/ui/avatar";
+import { ScoreSaberItem } from "@/types/scoresaber";
 import {BarChart, Key, Sparkles, Star} from "lucide-react";
 
 const diffConv = (diff:string) => {
@@ -19,11 +19,11 @@ export default function ScoreItem(
 {
   scoreItem
 }:{
-  scoreItem: BeatLeaderItem
+  scoreItem: ScoreSaberItem
 }
 ) {
   return (
-    <div className={"rounded-lg flex bg-black/[.4] space-x-2"}>
+    <div className={"rounded-lg flex bg-black/[.4] space-x-2  backdrop-blur-md"}>
         <Avatar className={"rounded-md h-14 w-14"}>
           <AvatarImage src={scoreItem.leaderboard.coverImage}></AvatarImage>
         </Avatar>

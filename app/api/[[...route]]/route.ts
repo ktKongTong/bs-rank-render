@@ -27,7 +27,37 @@ app.get('/api/player/:uid', async (c)=> {
 
 app.get('/api/player/:uid/full', async (c)=> {
   const {uid} = c.req.param()
+  const platform = c.req.query('platform')
+  // let url = 
+
   const res = await fetch(`https://scoresaber.com/api/player/${uid}/full`)
+  return res
+})
+
+
+
+app.get('/api/beatsaver/:id', async (c)=> {
+  const {id} = c.req.param()
+  const res = await fetch(`https://beatsaver.com/api/maps/id/${id}`)
+  return res
+})
+
+
+app.get('/api/bealeader/:uid', async (c)=> {
+  const {uid} = c.req.param()
+  
+  const res = await fetch(`https://api.beatleader.xyz/player/${uid}`)
+  return res
+})
+app.get('/api/bealeader/:uid/scores', async (c)=> {
+  const {uid} = c.req.param()
+  const res = await fetch(`https://api.beatleader.xyz/player/${uid}/scores?count=32`)
+  return res
+})
+
+app.get('/api/bealeader/:uid/pinnedScores', async (c)=> {
+  const {uid} = c.req.param()
+  const res = await fetch(`https://api.beatleader.xyz/player/${uid}/pinnedScores`)
   return res
 })
 export const GET = handle(app)
