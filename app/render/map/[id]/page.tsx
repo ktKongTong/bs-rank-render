@@ -45,16 +45,15 @@ export default async function BSPlayerRankPage({params}: { params: { id: string 
         {/* <div id={bsMap.id} className="border rounded-md  w-[300px] shadow-md bg-black/[.6] "> */}
           <div className="p-4">
             <div className="text-ellipsis  line-clamp-2">
-        <span className="text-ellipsis  line-clamp-2 text-xl font-weight bg-gradient-to-r bg-clip-text text-transparent from-red-500 to-blue-500">
-        {bsMap.name}
-        </span>
+              <span className="text-ellipsis  line-clamp-2 text-xl font-weight bg-gradient-to-r bg-clip-text text-transparent from-red-500 to-blue-500">
+              {bsMap.name}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <div className="author flex space-x-4 items-center ">
                 <img src={bsMap.uploader.avatar} className="rounded-full w-8 h-8"/>
                 <span className="text-xl">{bsMap.uploader.name}</span>
               </div>
-
             </div>
 
             <div className="meta  flex space-x-4 text-xs py-2 items-center">

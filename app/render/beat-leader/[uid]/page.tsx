@@ -61,7 +61,7 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
     ])
   
   topLeaderItems.filter(item=> pinnedItems.some(pinned=>pinned.id === item.id))
-  const leaderItems = pinnedItems.concat(topLeaderItems).slice(0,32)
+  const leaderItems = pinnedItems.concat(topLeaderItems).slice(0,24)
   const part = getPart(user)
   // const bg = user.profileSettings.profileCover ?? user.avatar
   const bg = "https://www.loliapi.com/acg/pc/"
@@ -70,17 +70,17 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
   <>
     <div className={"flex flex-col bg-slate-100 justify-center items-center min-h-screen"}>
       <div
-         className={"h-[680px] w-[960px] rounded-md"}
+         className={"h-[720px] w-[1024px] rounded-md"}
          id="render-result"
       style={{
         backgroundImage: `url('${bg}')`,
         backgroundSize: 'cover',
       }}
       >
-        <div className={"bg-blend-darken bg-black/[.6] p-4 text-white h-full rounded-lg"}>
+        <div className={"bg-blend-darken bg-black/[.6] p-4 text-white h-full rounded-lg flex flex-col justify-between"}>
           <div className={"flex justify-between"}>
             <div className="flex space-x-4 pb-2">
-            <Avatar className={"h-32 w-32 rounded-md"}>
+            <Avatar className={"h-36 w-36 rounded-md"}>
               <AvatarImage src={user.avatar}/>
               <AvatarFallback>{user.name.slice(0, 1)}</AvatarFallback>
             </Avatar>
@@ -129,7 +129,7 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
             {/* more badages */}
             </div>
 
-            <div className="ml-auto mr-10 mb-2">
+            <div className="ml-auto mr-4  flex justify-center items-center">
             <SkillGraph factorA={part.accPpPart} factorB={part.techPpPart} factorC={part.passPpPart}/>
             </div>
           </div>
