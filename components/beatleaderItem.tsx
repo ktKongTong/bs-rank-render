@@ -17,7 +17,7 @@ const diffConv = (diff:string) => {
 }
 
 const getModifiers = (modifiers:string)=> {
-  return modifiers.split(',')
+  return modifiers?modifiers.split(','):['None']
 }
 
 export default function BeatLeaderItem(
@@ -50,7 +50,7 @@ export default function BeatLeaderItem(
                   </div>
                   <div>
                   <span><Key className={"w-3 h-3"}/></span>
-                  <span>{item.leaderboard.song.hash.slice(0, 5).toLowerCase()}</span>
+                  <span>{item.leaderboard.song.id.toLowerCase().replaceAll('x','')}</span>
                   </div>
               </div>
               <div className={"flex space-x-2 text-xs"}>
