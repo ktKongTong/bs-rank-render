@@ -11,6 +11,7 @@ import { BeadLeaderScoresResponse, Datum } from "@/types/beatleaderreq";
 import BeatLeaderItem from "@/components/beatleaderItem";
 import ScoreBadge from "@/components/socre-badge";
 import { getHeadsetForHMD, headset } from "@/lib/blheadset";
+import Flags from "@/components/flag";
 
 const BASE_URL = config.constants.BASE_URL
 
@@ -88,7 +89,10 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
               <span className={"text-3xl font-bold"}>{user.name}</span>
               <div className={"flex space-x-2 text-md font-bold items-center"}>
                 <span >🌎 # {user.rank}</span>
-                <span >{countryEmoji(user.country)} # {user.countryRank}</span>
+                <span >
+                  {/* {countryEmoji(user.country)} */}
+                <Flags flagNationCode={user.country}/>
+                 # {user.countryRank}</span>
               </div>
 
               <div className="flex gap-2 align-items-center "> 

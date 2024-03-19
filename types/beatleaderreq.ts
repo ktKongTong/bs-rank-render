@@ -38,7 +38,7 @@ export interface Datum {
     pauses: number;
     platform: string;
     playCount: number;
-    player: null;
+    player: any;
     playerId: string;
     pp: number | number;
     priority: number;

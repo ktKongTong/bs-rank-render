@@ -1,20 +1,10 @@
 import {Avatar, AvatarImage} from "@/components/ui/avatar";
+import { diffConv } from "@/lib/utils";
 import { Datum } from "@/types/beatleaderreq";
 import { ScoreSaberItem } from "@/types/scoresaber";
 import {BarChart, Key, Pin, Sparkles, Star, Wrench} from "lucide-react";
 
-const diffConv = (diff:string) => {
-  if(diff.includes('ExpertPlus')){
-    return "E+"
-  }else if(diff.includes('Expert')) {
-    return "EX"
-  }else if(diff.includes("Hard")){
-    return "H"
-  }else if(diff.includes("Normal")){
-    return "N"
-  }
-  return "E"
-}
+
 
 const getModifiers = (modifiers:string)=> {
   return modifiers?modifiers.split(','):['None']

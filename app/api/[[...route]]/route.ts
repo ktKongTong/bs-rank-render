@@ -49,6 +49,16 @@ app.get('/api/beatleader/:uid', async (c)=> {
   const res = await fetch(`https://api.beatleader.xyz/player/${uid}`)
   return res
 })
+
+
+app.get('/api/beatleader/score/:scoreid', async (c)=> {
+  const {scoreid} = c.req.param()
+  
+  const res = await fetch(`https://api.beatleader.xyz/score/${scoreid}`)
+  return res
+})
+
+
 app.get('/api/beatleader/:uid/scores', async (c)=> {
   const {uid} = c.req.param()
   const query = c.req.queries()
