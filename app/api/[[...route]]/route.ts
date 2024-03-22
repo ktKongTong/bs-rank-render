@@ -42,7 +42,11 @@ app.get('/api/beatsaver/:id', async (c)=> {
   return res
 })
 
-
+app.get('/api/beatsaver/hash/:id', async (c)=> {
+  const {id} = c.req.param()
+  const res = await fetch(`https://beatsaver.com/api/maps/hash/${id}`)
+  return res
+})
 app.get('/api/beatleader/:uid', async (c)=> {
   const {uid} = c.req.param()
   

@@ -1,13 +1,20 @@
 
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import duration from 'dayjs/plugin/duration'
 import zh from 'dayjs/locale/zh-cn'
-
+dayjs.extend(duration)
 export const formatTime = (time: string) => {
     dayjs.extend(relativeTime)
     return dayjs(time).locale(zh).fromNow()
 }
 
+// {beatmap.metadata.duration}
+
+export const formatDuration = (duration: number) => {
+    console.log(duration)
+    return dayjs.duration(duration,'seconds').format('mm:ss')
+}
 
 export const formatNumber = (number: number) => {
     // 1.11w

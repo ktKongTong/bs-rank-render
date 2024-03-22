@@ -338,9 +338,8 @@ export default function ScoreGraph(
                                 color: 'white',
                             },
                         },
-                        y: {
+						score: {
                             display: true,
-                            position: 'left',
                             min: minMaxCounter.minValue,
                             max: minMaxCounter.maxValue,
                             ticks: {
@@ -348,7 +347,7 @@ export default function ScoreGraph(
                                 autoSkipPadding: 12,
                                 color: 'white',
                             },
-                        }
+						}						
 					},
 				},
 			}));
