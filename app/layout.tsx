@@ -23,9 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    {/*<QueryClientProvider client={queryClient}>*/}
+      <head>
+        <script defer
+          src="https://analytics.us.umami.is/script.js"
+          data-website-id="d049a9db-d66c-4e55-86ea-2971d1173830"
+        />
+      </head>
       <body className={inter.className}>{children}</body>
-    {/*</QueryClientProvider>*/}
     </html>
   );
 }
