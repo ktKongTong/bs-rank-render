@@ -11,7 +11,7 @@ import { BeadLeaderScoresResponse, Datum } from "@/types/beatleaderreq";
 import BeatLeaderItem from "@/components/beatleaderItem";
 import ScoreBadge from "@/components/socre-badge";
 import { getHeadsetForHMD, headset } from "@/lib/blheadset";
-import Flags from "@/components/flag";
+import Flags, { EarchIcon } from "@/components/flag";
 
 const BASE_URL = config.constants.BASE_URL
 
@@ -71,14 +71,14 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
   <>
     <div className={"flex flex-col bg-slate-100 justify-center items-center min-h-screen"}>
       <div
-         className={"h-[720px] w-[1024px] rounded-md"}
+         className={"h-[720px] w-[1024px] rounded-none"}
          id="render-result"
       style={{
         backgroundImage: `url('${bg}')`,
         backgroundSize: 'cover',
       }}
       >
-        <div className={"bg-blend-darken bg-black/[.6] p-4 text-white h-full rounded-lg flex flex-col justify-between"}>
+        <div className={"bg-blend-darken bg-black/[.6] p-4 text-white h-full rounded-none flex flex-col justify-between"}>
           <div className={"flex justify-between"}>
             <div className="flex space-x-4 pb-2">
             <Avatar className={"h-36 w-36 rounded-md"}>
@@ -88,7 +88,10 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
             <div className={"flex flex-col justify-between"}>
               <span className={"text-3xl font-bold"}>{user.name}</span>
               <div className={"flex space-x-2 text-md font-bold items-center"}>
-                <span >🌎 # {user.rank}</span>
+                <span  className="flex items-center space-x-1">
+                  <EarchIcon/>
+                  <span># {user.rank}</span>
+                </span>
                 <span className="flex items-center space-x-1">
                   <Flags flagNationCode={user.country}/>
                   <span># {user.countryRank}</span>

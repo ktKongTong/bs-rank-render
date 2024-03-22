@@ -44,14 +44,14 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
         <>
     <div className={"flex flex-col bg-slate-100 justify-center items-center min-h-screen"}>
         <div
-            className={"h-[720px] w-[400px] rounded-md bg-gradient-to-br from-red-300 to-blue-300"}
+            className={"h-[720px] w-[400px] rounded-none bg-gradient-to-br from-red-300 to-blue-300"}
             id="render-result"
             style={{
                 backgroundImage: `url('${bg}')`,
                 backgroundSize: 'cover',
             }}
         >
-            <div className={"bg-blend-darken bg-black/[.6] p-4 text-white h-full rounded-lg flex flex-col"}>
+            <div className={"bg-blend-darken bg-black/[.6] p-4 text-white h-full rounded-none flex flex-col"}>
                 <div className="flex space-x-4 items-center justify-between text-xl font-bold">
                     <div className="flex space-x-4 items-center justify-between text-2xl font-bold">
                         <Avatar className={"h-16 w-16 rounded-full"}>
