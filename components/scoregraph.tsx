@@ -338,13 +338,23 @@ export default function ScoreGraph(
                                 color: 'white',
                             },
                         },
+						y: {
+							display: true,
+                            min: minMaxCounter.minValue,
+                            max: minMaxCounter.maxValue,
+							ticks: {
+                                autoSkip: true,
+                                autoSkipPadding: 4,
+                                color: 'white',
+                            },
+						},
 						score: {
-                            display: true,
+                            display: false,
                             min: minMaxCounter.minValue,
                             max: minMaxCounter.maxValue,
                             ticks: {
                                 autoSkip: true,
-                                autoSkipPadding: 12,
+                                autoSkipPadding: 4,
                                 color: 'white',
                             },
 						}						

@@ -66,23 +66,29 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
                         <ReplayQRCode url={`https://replay.beatleader.xyz/?scoreId=${score.id}`}/>
                     </div>
                 </div>
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 h-40">
                     <Avatar className={"h-40 w-40 rounded-md"}>
                         <AvatarImage src={score.song.cover}/>
                         <AvatarFallback>{score.song.name.slice(0,1)}</AvatarFallback>
                     </Avatar>
                     <div className="text-xs font-bold flex flex-col justify-between">
-                        <div className="text-xl">{score.song.name}</div>
+                        <div className="text-xl text-ellipsis line-clamp-2">{score.song.name}</div>
                         <div className="flex space-x-2 items-center text-sm">
                             <Avatar className={"h-4 w-4 rounded-full"}>
                                 <AvatarImage src={beatmap.uploader.avatar}/>
                                 <AvatarFallback>{score.song.mapper.slice(0,1)}</AvatarFallback>
                             </Avatar>
-                            <div>
-                                {score.song.mapper}
+                            <div className="flex items-center justify-between">
+                                <div className="text-ellipsis line-clamp-1">
+                                    {score.song.mapper}
+                                </div>
                             </div>
                         </div>
                         <div className="text-xs grid grid-cols-3 gap-1 *:space-x-1 *:flex *:items-center font-normal">
+                            <div className="flex items-center text-ellipsis col-span-3 line-clamp-1">
+                                    <Calendar className="h-3 w-3"/>
+                                    <span>{formatTime(beatmap.lastPublishedAt)}</span>
+                            </div>
                             <div>
                                 <span><BarChart className={"w-3 h-3"}/></span>
                                 <span>{diffConv(score.difficulty.difficultyName)}</span>
@@ -95,18 +101,7 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
                                 <span><Key className={"w-3 h-3"}/></span>
                                 <span>{score.song.id.toLowerCase().replaceAll('x','')}</span>
                             </div>
-                            <div className="flex items-center">
-                                <HeartPulse className="h-3 w-3"/>
-                                <span>{beatmap.metadata.bpm}</span>
-                            </div>
-                            <div className="flex items-center">
-                                <Clock className="h-3 w-3"/>
-                                <span>{formatDuration(beatmap.metadata.duration)}</span>
-                            </div>
-                            <div className="flex items-center">
-                                <Calendar className="h-3 w-3"/>
-                                <span>{formatTime(beatmap.lastPublishedAt)}</span>
-                            </div>
+                            
                             <div className="flex items-center">
                                 <ThumbsUp className="h-3 w-3"/>
                                 <span>{beatmap.stats.upvotes}</span>
@@ -114,6 +109,10 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
                             <div className="flex items-center">
                                 <ThumbsDown className="h-3 w-3"/>
                                 <span>{beatmap.stats.downvotes}</span>
+                            </div>
+                            <div className="flex items-center">
+                                <Clock className="h-3 w-3"/>
+                                <span>{formatDuration(beatmap.metadata.duration)}</span>
                             </div>
                         </div>
                         <div className="flex items-center space-x-2 text-xs font-normal">
