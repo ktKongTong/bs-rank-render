@@ -89,7 +89,7 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
               <span className={"text-3xl font-bold"}>{user.name}</span>
               <div className={"flex space-x-2 text-md font-bold items-center"}>
                 <span >🌎 # {user.rank}</span>
-                <span>
+                <span className="flex items-center space-x-1">
                   <Flags flagNationCode={user.country}/>
                   <span># {user.countryRank}</span>
                 </span>
