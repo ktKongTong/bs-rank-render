@@ -13,19 +13,28 @@ import QRCodeStyling, {
   } from "qr-code-styling";
 export default function ReplayQRCode(
 {
-    url
+  url,
+  withImg,
+  width,
+  height,
+  className
 }:{
-    url:string
+
+  url:string,
+  width?:number,
+  height?:number,
+  withImg?:boolean,
+  className?: string,
 }
 ){
     
     const [options] = useState<Options>({
-        width: 100,
-        height: 100,
+        width: width ?? 100,
+        height: height ?? 100,
         type: 'svg' as DrawType,
         data: url,
-        image: '/beatleader.svg',
-        margin: 10,
+        image: withImg ? '/beatleader.svg':undefined,
+        margin: 2,
         qrOptions: {
           typeNumber: 0 as TypeNumber,
           mode: 'Byte' as Mode,
@@ -67,6 +76,6 @@ export default function ReplayQRCode(
         qrCode.update(options);
       }, [qrCode, options]);
       return (
-          <div ref={ref} />
+          <div ref={ref} className={className}/>
       );
 }

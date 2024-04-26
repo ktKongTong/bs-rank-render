@@ -9,6 +9,7 @@ import { CharacteristicIcon } from "@/components/characteristic";
 import dayjs from 'dayjs'
 import duration from "dayjs/plugin/duration";
 import { formatNumber, formatTime } from "@/lib/format";
+import ReplayQRCode from "@/components/qrcode";
 dayjs.extend(duration)
 const BASE_URL = config.constants.BASE_URL
 
@@ -53,6 +54,17 @@ export default async function BSPlayerRankPage({params}: { params: { id: string 
                 <div className="author flex space-x-4 items-center ">
                   <img src={bsMap.uploader.avatar} className="rounded-full w-8 h-8"/>
                   <span className="text-xl">{bsMap.uploader.name}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className={'flex flex-col items-center'}>
+                    <ReplayQRCode url={`https://beatsaver.com/maps/${bsMap.id}`} className={"w-10 h-10"} width={40} height={40}/>
+                    <div className={"text-[8px] font-light"}>beatsaver</div>
+                  </div>
+                  <div className={'flex flex-col items-center'}>
+                    <ReplayQRCode url={`https://allpoland.github.io/ArcViewer/?id=${bsMap.id}`} className={"w-10 h-10"} width={40} height={40}/>
+                    <div className={"text-[8px] font-light"} >preview</div>
+                  </div>
+
                 </div>
               </div>
 

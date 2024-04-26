@@ -63,7 +63,7 @@ export default async function BSPlayerRankPage({params,searchParams}: { params: 
                         </div>
                     </div>
                     <div>
-                        <ReplayQRCode url={`https://replay.beatleader.xyz/?scoreId=${score.id}`}/>
+                        <ReplayQRCode url={`https://replay.beatleader.xyz/?scoreId=${score.id}`} withImg/>
                     </div>
                 </div>
                 <div className="flex space-x-4 h-40">
