@@ -25,6 +25,7 @@
     "qr-code-styling": "1.6.0-rc.1",
     "react": "^18",
     "react-dom": "^18",
+    "skia-canvas": "^1.0.1",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
