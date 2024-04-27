@@ -16,7 +16,6 @@ const BASE_URL = config.constants.BASE_URL
 async function getMapDetail(id:string) {
   const url = `${BASE_URL}/api/beatsaver/${id}`
   const res = await fetch(url).then(res=> res.json())
-
   return res as BSMap
 }
 
