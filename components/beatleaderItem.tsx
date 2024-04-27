@@ -23,7 +23,7 @@ export default function BeatLeaderItem(
     <div className="relative">
         <div className={"rounded-lg flex bg-black/[.4] space-x-2 backdrop-blur-md"}>
             <Avatar className={"rounded-md h-20 w-20"}>
-            <AvatarImage src={item.leaderboard.song.coverImage}></AvatarImage>
+              <AvatarImage src={item.leaderboard.song.coverImage}></AvatarImage>
             </Avatar>
             <div className={"flex flex-col justify-between py-0.5"}>
               <div className={"font-semibold text-xs text-ellipsis overflow-hidden line-clamp-1"}>
