@@ -1,8 +1,6 @@
 'use client'
 
 import React, {useEffect, useRef, useState} from "react";
-import {QRCodeCanvas} from '@loskir/styled-qr-code-node';
-
 import QRCodeStyling, {
   CornerDotType,
   CornerSquareType,
@@ -13,7 +11,6 @@ import QRCodeStyling, {
   Options,
   TypeNumber
 } from "qr-code-styling";
-
 function blobToBase64(blob:Blob) {
   return new Promise((resolve, _) => {
     const reader = new FileReader();
@@ -37,21 +34,67 @@ export default function ReplayQRCode(
     className?: string,
   }
 ){
-  const [imageSrc, setImageSrc] = useState<string>("");
+  const [options] = useState<Options>({
+    width: width ?? 300,
+    height: height ?? 300,
+    type: 'canvas' as DrawType,
+    data: url,
+    image: withImg ? '/beatleader.svg':undefined,
+    margin: 0,
+    qrOptions: {
+      typeNumber: 0 as TypeNumber,
+      mode: 'Byte' as Mode,
+      errorCorrectionLevel: 'Q' as ErrorCorrectionLevel
+    },
+    imageOptions: {
+      hideBackgroundDots: true,
+      imageSize: 0.2,
+      margin: 10,
+      crossOrigin: 'anonymous',
+    },
+    dotsOptions: {
+      color: '#ffffff',
+      type: 'rounded' as DotType
+    },
+    backgroundOptions: {
+      color: 'rgb(0,0,0,0)',
+    },
+    cornersSquareOptions: {
+      color: '#ffffff',
+      type: 'extra-rounded' as CornerSquareType,
+    },
+    cornersDotOptions: {
+      color: '#ffffff',
+      type: 'dot' as CornerDotType,
+    }
+  });
+  const it = new QRCodeStyling(options)
+  const [qrCode] = useState<QRCodeStyling>(it);
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  const [imgUrl,setImgUrl] = useState('')
+  const setCanvas = async ()=> {
+    const  data = await qrCode.getRawData('png')
+    console.log(data)
+    const res = await blobToBase64(data!)
+    setImgUrl(res as any)
+  }
 
   useEffect(() => {
-    fetch(`/api/qr?url=${encodeURIComponent(url)}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.base64) {
-          setImageSrc(data.base64);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching image:", error);
-      });
-  }, []);
+    if(canvasRef.current) {
+      setCanvas()
+    }
+  }, [setCanvas,canvasRef]);
+
+  useEffect(() => {
+    if (!qrCode) return;
+    qrCode.update(options);
+  }, [qrCode, options]);
   return (
-      <img src={imageSrc} width={width ?? 100} className={className}/>
+    <div>
+      <canvas ref={canvasRef} width={width ?? 100} height={height ?? 100} className={'hidden'}/>
+      <img src={imgUrl} width={width ?? 100} className={className}/>
+    </div>
+
   );
 }
