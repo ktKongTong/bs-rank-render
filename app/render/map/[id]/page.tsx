@@ -117,7 +117,7 @@ export default async function BSPlayerRankPage({params}: { params: { id: string 
               </div>
 
               <span className="font-bold">描述</span>
-              <p className="text-xs">
+              <p className="text-xs break-all">
                 {bsMap.description}
               </p>
 
